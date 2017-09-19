@@ -20,7 +20,13 @@ public class Pursue : MonoBehaviour {
         Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
         transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * .7f);
         */
-		transform.Translate(Vector3.right * Time.deltaTime * Vector3.Magnitude(transform.position - target.transform.position));
+
+		if (Vector3.Magnitude (transform.position - target.transform.position) <= 4.0f) {
+			Debug.Log ("slowingdown");
+			transform.Translate (Vector3.right * Time.deltaTime * Vector3.Magnitude (transform.position - target.transform.position));
+		} else {
+			transform.Translate (Vector3.right * Time.deltaTime * 5);
+		}
        
        
         //calculate the angle
