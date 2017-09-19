@@ -19,19 +19,17 @@ public class Pursue : MonoBehaviour {
         float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
         Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
         transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * .7f);
-        
-        if (Vector3.Magnitude(transform.position - target.transform.position) > 4) {
-            transform.position += transform.forward * 5;
-        }
-        else {
-            transform.position += transform.forward * Time.deltaTime;
-
-        }*/
+        */
+		transform.Translate(Vector3.right * Time.deltaTime * Vector3.Magnitude(transform.position - target.transform.position));
+       
+       
         //calculate the angle
         Vector3 vectorToTarget = target.transform.position - transform.position;
         float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
         Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
-        transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * .7f);
+        transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * 1.5f);
+
+
 
 
         /*

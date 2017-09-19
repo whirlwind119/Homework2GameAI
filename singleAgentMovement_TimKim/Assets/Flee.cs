@@ -17,5 +17,7 @@ public class Flee : MonoBehaviour {
         float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
         Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
         transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * .7f);
+
+		transform.Translate(Vector3.right * Time.deltaTime *5);
     }
 }
