@@ -12,8 +12,7 @@ public class PathScript : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		
+	void Update () { 
 	}
 
     public bool currentlyFalse()
@@ -32,4 +31,13 @@ public class PathScript : MonoBehaviour {
     {
         found = true;
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+       if(other.gameObject.tag == "Pathfinder")
+        {
+            this.changeStatus();
+        }
+    }
+
 }

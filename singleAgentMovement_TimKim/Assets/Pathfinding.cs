@@ -8,6 +8,7 @@ public class Pathfinding : MonoBehaviour
     public float speed;
     GameObject target;
     GameObject holder;
+    public GameObject[] paths;
 
 
 
@@ -31,10 +32,8 @@ public class Pathfinding : MonoBehaviour
         if(holder!= null)
         {
             target = holder;
+            transform.Translate(Vector3.right * Time.deltaTime * 2);
         }
-
-        transform.Translate(Vector3.right * Time.deltaTime * 2);
-
 
         //calculate the angle
         if (target != null)
@@ -57,33 +56,17 @@ public class Pathfinding : MonoBehaviour
         */
 
     }
-    
+
     public GameObject findTarget()
     {
-        Vector2 origin = (this.transform.position);
-        float radius = 4;
-        Vector2 direction = this.transform.forward;
-        float distance = Mathf.Infinity;
-        RaycastHit2D results;
-
-        results = Physics2D.CircleCast(origin, radius, direction, distance);
-
-        if (results.collider.tag == "path")
-        {
-            if (results.collider.gameObject.GetComponent<PathScript>().currentlyFalse() == true)
+        int i;
+        for(i = 0; i < paths.Length; i++){
+            if(paths[i].GetComponent<PathScript>().currentlyFalse() == true)
             {
-                results.collider.gameObject.GetComponent<PathScript>().changeStatus();
-                Debug.Log(results.collider.gameObject.transform.position.x);
-                return results.collider.gameObject;
-            }
-            else
-            {
-                return null;
+                Debug.Log(paths[i]);
+                return paths[i];
             }
         }
-        else
-        {
-            return null;
-        }
+        return null;
     }
 }
